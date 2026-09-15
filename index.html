@@ -47,7 +47,7 @@ input,textarea,select{font-family:inherit;font-size:15px;color:var(--ink)}
 .layout{display:grid;grid-template-columns:minmax(380px,44%) 1fr;align-items:start}
 .pane-form{padding:18px 16px 60px;border-inline-start:1px solid var(--line)}
 .workspace{position:sticky;top:64px;padding:18px 16px;background:#e9e7e0;min-height:calc(100vh - 64px)}
-@media (max-width:980px){
+@media screen and (max-width:980px){
   .layout{grid-template-columns:1fr}
   .workspace{position:static;min-height:0}
   .layout[data-tab="form"] .workspace{display:none}
@@ -144,8 +144,9 @@ table.items-tbl tr.grand td{font-weight:700;background:#d9d9d9;print-color-adjus
   .topbar,.pane-form,.tabs,.overlay,.toast,.print-hint{display:none!important}
   body{background:#fff}
   .layout{display:block!important}
-  .workspace{position:static;padding:0;background:#fff;min-height:0}
-  .stage{overflow:visible}
+  .workspace{position:static;padding:0;background:#fff;min-height:0;display:block!important}
+  .layout[data-tab="form"] .workspace,.layout[data-tab="preview"] .workspace{display:block!important}
+  .stage{overflow:visible;height:auto!important;display:block!important}
   #sheets{transform:none!important;width:210mm}
   .sheet{box-shadow:none;margin:0;break-after:page;page-break-after:always}
   .sheet:last-of-type:not(.hidden){break-after:auto;page-break-after:auto}
