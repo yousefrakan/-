@@ -159,7 +159,7 @@ textarea{resize:vertical;min-height:110px;line-height:1.7}
 <body>
 
 <header class="topbar">
-  <div class="brand"><b>مؤسسة المبيت للمقاولات العامة</b><span>محرّر عروض الأسعار — نسخة 1.3</span></div>
+  <div class="brand"><b>مؤسسة المبيت للمقاولات العامة</b><span>محرّر عروض الأسعار — نسخة 1.4</span></div>
   <div class="actions">
     <button class="btn" id="btnNew">عرض جديد</button>
     <button class="btn" id="btnSave">حفظ في الأرشيف</button>
@@ -183,6 +183,7 @@ textarea{resize:vertical;min-height:110px;line-height:1.7}
       <div class="grid">
         <div class="field"><label for="f-date">التاريخ</label><input type="date" id="f-date" data-key="date"></div>
         <div class="field"><label for="f-quoteNo">رقم العرض (اختياري)</label><input type="text" id="f-quoteNo" data-key="quoteNo" placeholder="Q-2026-001"></div>
+        <div class="field full"><label for="f-greeting">التحية</label><input type="text" id="f-greeting" data-key="greeting"></div>
         <div class="field full"><label for="f-company">الجهة / الشركة</label><input type="text" id="f-company" data-key="company" placeholder="شركة مهارة"></div>
         <div class="field full"><label for="f-engineer">عناية المهندس</label><input type="text" id="f-engineer" data-key="engineer" placeholder="حسين الدوسري"></div>
         <div class="field full"><label for="f-subject">الموضوع</label><input type="text" id="f-subject" data-key="subject" placeholder="عرض سعر اعمال ..."></div>
@@ -252,7 +253,7 @@ textarea{resize:vertical;min-height:110px;line-height:1.7}
           <div class="doc">
             <p class="quotation">Quotation</p>
             <p class="doc-line sm date-line" id="p-date"></p>
-            <p class="doc-line" id="p-greet">السلام عليكم</p>
+            <p class="doc-line" id="p-greet"></p>
             <p class="doc-line" id="p-company"></p>
             <p class="doc-line" id="p-engineer"></p>
             <p class="doc-line gap" id="p-subject"></p>
@@ -368,7 +369,7 @@ function defaults(){
   try{ s=JSON.parse(sGet(KEY_S)||'{}'); }catch(e){ s={}; }
   return {
     id:null, savedAt:null,
-    date:todayISO(), quoteNo:'', company:'', engineer:'', subject:'',
+    date:todayISO(), quoteNo:'', greeting:'السلام عليكم ورحمة الله وبركاته', company:'', engineer:'', subject:'',
     body:'بعد الاطلاع على الموقع ودراسة المتطلبات، نرفق لكم التسعيرة بكافة الأعمال من توريد وتنفيذ بمبلغ اجمالي {المبلغ}',
     amount:'',
     vatNote: s.vatNote || 'السعر لا يشمل قيمة الضريبة المضافة 15%',
@@ -485,6 +486,7 @@ function render(){
   var dateTxt='اليوم: '+LRM+arDate(state.date)+LRM;
   if(state.quoteNo) dateTxt='رقم العرض: '+LRM+esc(state.quoteNo)+LRM+' &nbsp;&nbsp; '+dateTxt;
   document.getElementById('p-date').innerHTML=dateTxt;
+  document.getElementById('p-greet').innerHTML=esc(state.greeting);
   document.getElementById('p-company').innerHTML= state.company? 'السادة / <span class="bold">'+esc(state.company)+'</span> &nbsp; المحترمين' : '';
   document.getElementById('p-engineer').innerHTML= state.engineer? 'عناية المهندس – '+esc(state.engineer)+' &nbsp; المحترم' : '';
   document.getElementById('p-subject').innerHTML= state.subject? 'الموضوع: '+esc(state.subject) : '';
